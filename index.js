@@ -1,28 +1,28 @@
 
-let myLeads = [];
+let myLinks = [];
 const inputEl = document.getElementById("input-el");
 const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.getElementById("ul-el");
 const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
 
-const leadsFromLocalStorage = JSON.parse(localStorage.getItem(("myLeads")));
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem(("myLinks")));
 
 if(leadsFromLocalStorage){
-    myLeads = leadsFromLocalStorage;
-    render(myLeads);
+    myLinks = leadsFromLocalStorage;
+    render(myLinks);
 }
 
 
 tabBtn.addEventListener("click", function() {
     chrome.tabs.query({active:true, currentWindow:true}, function(tabs) {
-        myLeads.push(tabs[0].url);
-        localStorage.setItem("myLeads", JSON.stringify(myLeads));
-        render(myLeads);
+        myLinks.push(tabs[0].url);
+        localStorage.setItem("myLinks", JSON.stringify(myLinks));
+        render(myLinks);
         
     });
 });
-// localStorage.setItem("myName", "Nandini");
+// localStorage.setItem("myName", "Nani");
 // localStorage.getItem();
 // localStorage.clear();
 
@@ -45,17 +45,17 @@ function render(leads){
 }
 
 inputBtn.addEventListener("click",function(){
-    myLeads.push(inputEl.value);
+    myLinks.push(inputEl.value);
     inputEl.value ="";
-    // saves myleads array to local storage 
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    render(myLeads);
+    // saves mylinks array to local storage 
+    localStorage.setItem("myLinks", JSON.stringify(myLinks));
+    render(myLinks);
     //console.log(localStorage.getItem("myLeads"));
 
 }); 
 
 deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear();
-    myLeads=[];
-    render(myLeads);
+    myLinks=[];
+    render(myLinks);
 });
